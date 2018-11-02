@@ -115,7 +115,7 @@ EXIT /B %ERRORLEVEL%
 :getDeps
 REM Add current repo to list of already passed dependencies
 ECHO Getting and updating any required dependency libs...
-cd %FFMPEGPATH%/SMP
+cd "%FFMPEGPATH%/SMP"
 CALL project_get_dependencies.bat "ffmpeg" || EXIT /B 1
 cd %~dp0
 ECHO.
