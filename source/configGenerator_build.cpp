@@ -21,6 +21,8 @@
 #include "configGenerator.h"
 
 #include <algorithm>
+#include <filesystem>
+#include <iostream>
 
 bool ConfigGenerator::buildDefaultValues()
 {
@@ -35,6 +37,8 @@ bool ConfigGenerator::buildDefaultValues()
     if (m_sOutDirectory.length() == 0) {
         m_sOutDirectory = "../../../msvc/";
     }
+
+    std::cout << "Output directory = " << std::experimental::filesystem::canonical(m_sOutDirectory) << std::endl;
 
     // configurable options
     vector<string> vList;
