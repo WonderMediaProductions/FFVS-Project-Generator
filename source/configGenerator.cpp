@@ -743,6 +743,7 @@ bool ConfigGenerator::passCurrentValues()
     }
 #endif
 
+    bool allValid = true;
     //Check the current options are valid for selected license
     if (getConfigOption("nonfree")->m_sValue.compare("1") != 0) {
         vector<string> vLicenseList;
@@ -751,7 +752,7 @@ bool ConfigGenerator::passCurrentValues()
             for (vector<string>::iterator itI = vLicenseList.begin(); itI < vLicenseList.end(); itI++) {
                 if (getConfigOption(*itI)->m_sValue.compare("1") == 0) {
                     outputError("Current license does not allow for option (" + getConfigOption(*itI)->m_sOption + ")");
-                    return false;
+                    allValid = false;
                 }
             }
             //Check for gpl3 lists
@@ -761,7 +762,7 @@ bool ConfigGenerator::passCurrentValues()
                     for (vector<string>::iterator itI = vLicenseList.begin(); itI < vLicenseList.end(); itI++) {
                         if (getConfigOption(*itI)->m_sValue.compare("1") == 0) {
                             outputError("Current license does not allow for option (" + getConfigOption(*itI)->m_sOption + ")");
-                            return false;
+                            allValid = false;
                         }
                     }
                 }
@@ -773,7 +774,7 @@ bool ConfigGenerator::passCurrentValues()
                     for (vector<string>::iterator itI = vLicenseList.begin(); itI < vLicenseList.end(); itI++) {
                         if (getConfigOption(*itI)->m_sValue.compare("1") == 0) {
                             outputError("Current license does not allow for option (" + getConfigOption(*itI)->m_sOption + ")");
-                            return false;
+                            allValid = false;
                         }
                     }
                 }
@@ -785,14 +786,14 @@ bool ConfigGenerator::passCurrentValues()
                     for (vector<string>::iterator itI = vLicenseList.begin(); itI < vLicenseList.end(); itI++) {
                         if (getConfigOption(*itI)->m_sValue.compare("1") == 0) {
                             outputError("Current license does not allow for option (" + getConfigOption(*itI)->m_sOption + ")");
-                            return false;
+                            allValid = false;
                         }
                     }
                 }
             }
         }
     }
-    return true;
+    return allValid;
 }
 
 bool ConfigGenerator::outputConfig()
