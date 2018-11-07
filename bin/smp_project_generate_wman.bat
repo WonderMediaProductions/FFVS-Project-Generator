@@ -2,10 +2,11 @@
 
 SET UPSTREAMURL=https://github.com/ShiftMediaProject
 SET DEPENDENCIES=( ^
-libvpx, ^
-opus ^
+zlib, ^
+opus, ^
+libvpx ^
 )
-SET PGOPTIONS=--enable-version3 --enable-avcodec --enable-avformat --enable-avfilter --enable-swresample --enable-swscale --enable-ffmpeg --enable-libvpx --enable-nvenc --enable-libopus --toolchain=msvc
+SET PGOPTIONS=--enable-version3 --enable-ffnvcodec --enable-avcodec --enable-avformat --enable-avfilter --enable-swresample --enable-swscale --enable-ffmpeg --enable-libvpx --enable-libopus --enable-zlib --enable-encoder=png  --enable-encoder=ljpeg --toolchain=msvc
 
 REM Store current directory and ensure working directory is the location of current .bat
 SET CURRDIR=%CD%
